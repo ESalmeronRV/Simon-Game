@@ -15,9 +15,6 @@ function nextSequence() {
   var randomChosenColour = buttonColours[randomNumber];
   gamePattern.push(randomChosenColour);
   $("#" + randomChosenColour).fadeOut(100).fadeIn(100);
-  // console.log(randomNumber);
-  // console.log(randomChosenColour);
-  // console.log(gamePattern);
   playSound(randomChosenColour);
   level++;
   $("#level-title").text("Level " + level);
@@ -61,6 +58,18 @@ $(".btn").click(function() {
   animatePress(userChosenColour);
   checkAnswer(userClickedPattern.length - 1);
   // console.log(userClickedPattern);
+})
+
+$(".btn-new-game").click(function() {
+  level = 0;
+  userClickedPattern = [];
+  gamePattern = [];
+  if (level === 0) {
+      $("#level-title").text("Starting new game");
+    setTimeout(function() {
+      nextSequence();
+    }, 1500);
+  }
 })
 
 function animatePress(currentColour) {
